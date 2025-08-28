@@ -11,7 +11,7 @@ const RULES = {
   paracetamol: {
     perDoseMgPerKg: 15,
     singleDoseCapMg: 1000,
-    maxDailyMgPerKg: 75,
+    maxDailyMgPerKg: 60,
     maxDailyCapMg: 3000,
     interval: { en: "every 4–6 hours", cs: "každé 4–6 hodiny" },
     label: { en: "Paralen (Paracetamol)", cs: "Paralen (Paracetamol)" }
@@ -41,9 +41,12 @@ const renderResult = (res, drug, lang) => {
     <div class="card">
       <strong>${r.label[lang]}</strong> — ${r.interval[lang]}
       <div class="field">
-        <p><span lang="${lang}">${lang === "en" ? "Per-dose estimate" : "Dávka na jednu dávku"}:</span> 
+        <p>
+        <span lang="en" ${lang === "en" && 'class="active"'}>Per-dose estimate:</span>
+        <span lang="cs" ${lang === "cs" && 'class="active"'}>Jedna Dávka:</span>
         <strong>${formatMg(res.perDose)}</strong></p>
-        <p><span lang="${lang}">${lang === "en" ? "Max in 24 hours" : "Maximum za 24 hodin"}:</span> 
+        <span lang="en" ${lang === "en" && 'class="active"'}>Max in 24 hours:</span>
+        <span lang="cs" ${lang === "cs" && 'class="active"'}>Maximum za 24 hodin:</span>
         <strong>${formatMg(res.maxDaily)}</strong></p>
       </div>
     </div>
