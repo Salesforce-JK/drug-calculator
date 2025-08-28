@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pill Dose Estimator</title>
+  <link rel="stylesheet" href="src/style.css" />
+</head>
+<body>
+  <!-- language selector in top right -->
+  <div id="lang-switcher">
+    <button data-lang="en" title="English">🇬🇧</button>
+    <button data-lang="cs" title="Čeština">🇨🇿</button>
+  </div>
+
+  <main class="container">
+    <header class="header">
+      <h1 lang="en">Pill Dose Estimator</h1>
+      <h1 lang="cs">Výpočet dávky léku</h1>
+
+      <p class="muted" lang="en">Enter weight (kg) and choose a pill. We’ll show a conservative per-dose estimate and 24-hour maximum.</p>
+      <p class="muted" lang="cs">Zadejte hmotnost (kg) a vyberte lék. Zobrazí se doporučená dávka na jednu dávku a maximální množství za 24 hodin.</p>
+    </header>
+
+    <form id="dose-form" novalidate>
+      <div class="field">
+        <label for="weight" lang="en">Weight (kg)</label>
+        <label for="weight" lang="cs">Hmotnost (kg)</label>
+        <input id="weight" name="weight" type="number" step="0.1" min="2" max="300" required />
+        <small class="hint" lang="en">Use body weight in kilograms.</small>
+        <small class="hint" lang="cs">Použijte hmotnost v kilogramech.</small>
+      </div>
+
+      <div class="field">
+        <label for="drug" lang="en">Pill</label>
+        <label for="drug" lang="cs">Lék</label>
+        <select id="drug" name="drug" required>
+          <option value="ibuprofen" lang="en">Nurofen (Ibuprofen)</option>
+          <option value="ibuprofen" lang="cs">Nurofen (Ibuprofen)</option>
+          <option value="paracetamol" lang="en">Paralen (Paracetamol)</option>
+          <option value="paracetamol" lang="cs">Paralen (Paracetamol)</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn" lang="en">Calculate</button>
+      <button type="submit" class="btn" lang="cs">Spočítat</button>
+    </form>
+
+    <section id="result" class="card" aria-live="polite"></section>
+  </main>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
