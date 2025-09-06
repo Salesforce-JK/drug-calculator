@@ -18,6 +18,11 @@ const RULES = {
   }
 };
 
+const DRUG_OPTIONS = [
+  { value: "ibuprofen", label: { en: "Nurofen (Ibuprofen)", cs: "Nurofen (Ibuprofen)" } },
+  { value: "paracetamol", label: { en: "Paralen (Paracetamol)", cs: "Paralen (Paracetamol)" } }
+];
+
 const clamp = (n, min, max) => Math.min(Math.max(n, min), max);
 const roundTo = (n, step = 10) => Math.round(n / step) * step;
 const formatMg = mg => `${mg.toLocaleString()} mg`;
@@ -78,6 +83,14 @@ const updateLanguage = (lang) => {
       else el.classList.add("active");
     }
   });
+
+  // Render drug options localized
+  const drugSelect = document.getElementById("drug");
+  if (!drugSelect) return;
+  drugSelect.innerHTML = DRUG_OPTIONS.map(
+    opt => `<option value="${opt.value}">${opt.label[lang]}</option>`
+  ).join("");
+
   initForm(lang);
 };
 
